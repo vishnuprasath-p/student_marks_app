@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+        .card {
+            border-radius: 10px;
+        }
+        .btn-custom {
+            background-color: #5c6bc0;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #3f51b5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-lg">
+                <div class="card-header text-center">
+                    <h4>Student Results</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Total Marks</th>
+                                <th>Average</th>
+                                <th>Rank</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in students %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{ student[0] }}</td>
+                                    <td>{{ student[4] }}</td>
+                                    <td>{{ student[5] }}</td>
+                                    <td>{{ loop.index }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="/" class="btn btn-custom"><i class="fas fa-home"></i> Home</a>
+                        <a href="/export_excel" class="btn btn-custom">Export to Excel</a>
+                        <a href="/export_pdf" class="btn btn-custom">Export to PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

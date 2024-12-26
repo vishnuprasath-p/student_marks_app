@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="text-center">Student Results</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Section</th>
+            <th>Total Marks</th>
+            <th>Average</th>
+            <th>Rank</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student[1] }}</td>
+            <td>{{ student[2] }}</td>
+            <td>{{ student[3] }}</td>
+            <td>{{ student[4] }}</td>
+            <td>{{ student[5] }}</td>
+            <td>{{ student[6] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('export_excel') }}" class="btn btn-success">Export to Excel</a>
+<a href="{{ url_for('export_pdf') }}" class="btn btn-danger">Export to PDF</a>
+{% endblock %}

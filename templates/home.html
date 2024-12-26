@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="text-center">Home</h2>
+<form method="POST" action="/">
+    <div class="form-group">
+        <label for="class_name">Class</label>
+        <select class="form-control" name="class_name" required>
+            <option value="">Select Class</option>
+            {% for class in classes %}
+            <option value="{{ class[0] }}">{{ class[0] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="section">Section</label>
+        <select class="form-control" name="section" required>
+            <option value="">Select Section</option>
+            {% for section in sections %}
+            <option value="{{ section[0] }}">{{ section[0] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Select</button>
+</form>
+
+<h3 class="mt-4">Student Results</h3>
+{% if students %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Total Marks</th>
+            <th>Average</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student[0] }}</td>
+            <td>{{ student[1] }}</td>
+            <td>{{ student[2] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p>Average Marks: {{ average_marks }}</p>
+{% endif %}
+
+<a href="{{ url_for('view_results') }}" class="btn btn-info">View Results</a>
+{% endblock %}
