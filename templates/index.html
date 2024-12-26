@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+        .card {
+            border-radius: 10px;
+        }
+        .card-header {
+            background-color: #5c6bc0;
+            color: white;
+            text-align: center;
+        }
+        .btn-custom {
+            background-color: #5c6bc0;
+            color: white;
+            font-size: 1.2rem;
+        }
+        .btn-custom:hover {
+            background-color: #3f51b5;
+            color: white;
+        }
+        .table th, .table td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header">
+                    <h4>Welcome, Teacher</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="class_name" class="form-label">Class</label>
+                            <select name="class_name" id="class_name" class="form-select">
+                                <option value="">Select Class</option>
+                                {% for class in classes %}
+                                    <option value="{{ class[0] }}">{{ class[0] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="section" class="form-label">Section</label>
+                            <select name="section" id="section" class="form-select">
+                                <option value="">Select Section</option>
+                                {% for section in sections %}
+                                    <option value="{{ section[0] }}">{{ section[0] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-custom w-100">Filter Students</button>
+                    </form>
+
+                    <hr>
+
+                    <h5>Student Results</h5>
+                    <table class="table table-bordered mt-4">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Total Marks</th>
+                                <th>Average</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in students %}
+                                <tr>
+                                    <td>{{ student[0] }}</td>
+                                    <td>{{ student[1] }}</td>
+                                    <td>{{ student[2] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% if average_marks %}
+                        <p><strong>Average Marks for this Class and Section: {{ average_marks }}</strong></p>
+                    {% endif %}
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="/" class="btn btn-custom"><i class="fas fa-home"></i> Home</a>
+                        <a href="/enter_marks" class="btn btn-custom"><i class="fas fa-plus-circle"></i> Add Marks</a>
+                        <a href="/results" class="btn btn-custom"><i class="fas fa-list"></i> View Results</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
